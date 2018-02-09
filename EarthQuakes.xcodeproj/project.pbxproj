@@ -15,6 +15,8 @@
 		C905219E2021379A008BCCFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C905219D2021379A008BCCFD /* main.m */; };
 		C90521A82021379A008BCCFD /* EarthQuakesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C90521A72021379A008BCCFD /* EarthQuakesTests.m */; };
 		C90521B32021379A008BCCFD /* EarthQuakesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C90521B22021379A008BCCFD /* EarthQuakesUITests.m */; };
+		C9E4835F202D3E9600476C5B /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9E4835E202D3E9600476C5B /* TableViewCell.xib */; };
+		C9E48362202D3F0000476C5B /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E48361202D3F0000476C5B /* TableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		C90521AE2021379A008BCCFD /* EarthQuakesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EarthQuakesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C90521B22021379A008BCCFD /* EarthQuakesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EarthQuakesUITests.m; sourceTree = "<group>"; };
 		C90521B42021379A008BCCFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9E4835E202D3E9600476C5B /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		C9E48360202D3F0000476C5B /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		C9E48361202D3F0000476C5B /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +115,9 @@
 				C90521992021379A008BCCFD /* LaunchScreen.storyboard */,
 				C905219C2021379A008BCCFD /* Info.plist */,
 				C905219D2021379A008BCCFD /* main.m */,
+				C9E4835E202D3E9600476C5B /* TableViewCell.xib */,
+				C9E48360202D3F0000476C5B /* TableViewCell.h */,
+				C9E48361202D3F0000476C5B /* TableViewCell.m */,
 			);
 			path = EarthQuakes;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C905219B2021379A008BCCFD /* LaunchScreen.storyboard in Resources */,
+				C9E4835F202D3E9600476C5B /* TableViewCell.xib in Resources */,
 				C90521982021379A008BCCFD /* Assets.xcassets in Resources */,
 				C90521962021379A008BCCFD /* Main.storyboard in Resources */,
 			);
@@ -266,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C90521932021379A008BCCFD /* ViewController.m in Sources */,
+				C9E48362202D3F0000476C5B /* TableViewCell.m in Sources */,
 				C905219E2021379A008BCCFD /* main.m in Sources */,
 				C90521902021379A008BCCFD /* AppDelegate.m in Sources */,
 			);

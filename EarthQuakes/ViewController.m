@@ -7,10 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "TableViewCell.h"
 
 @interface ViewController() <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) NSArray* tableViewData;
 
 @end
 
@@ -24,6 +26,8 @@
     [self tableView].delegate = self;
     [self tableView].dataSource = self;
     
+    [[self tableView] registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:@"TableViewCell"];
+    
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [self tableView].refreshControl = refreshControl;
     
@@ -34,16 +38,26 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+#pragma mark - data operations
+
 - (void)refreshTableViewWithSender: (UIRefreshControl*) sender {
     NSURLSession *session = [self makeURLSession];
     NSURL *url = [NSURL URLWithString:@"https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson"];
     
     [[session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSString* dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSError *jsonParseError;
-        NSArray* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonParseError];
-        NSLog(@"%@", dataString);
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonParseError];
+        
+        NSMutableArray* titles = @[].mutableCopy;
+        
+        for(NSDictionary *item in json[@"features"]) {
+            [titles addObject:item[@"properties"][@"title"]];
+        }
+        
+        [self setTableViewData:titles];
+        
         dispatch_sync(dispatch_get_main_queue(), ^{
+            [[self tableView] reloadData];
             [sender endRefreshing];
         });
     }] resume];
@@ -55,14 +69,18 @@
     return defaultSession;
 }
 
+#pragma mark - table view data source
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
                  cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return [[UITableViewCell alloc] init];
+    TableViewCell *cell = [[self tableView] dequeueReusableCellWithIdentifier:@"TableViewCell"];
+    [cell inflateWithTitle:[self tableViewData][[indexPath row]]];
+    return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return [[self tableViewData] count];
 }
 
 @end
